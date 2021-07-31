@@ -4,6 +4,8 @@ To execute the code on your local computer:
     1. npm i
     2. npm run start
 
+You can change the input on index.ts file
+
 If tests want to be executed: 
     1. npm run test
 
