@@ -10,10 +10,10 @@ const  isWeekend = (day: string ): boolean => {
 const getHoursWorked = (fee: {initHour: string, endHour: string, price: number}, day: dayWorked): number =>{
 
     //Important to consider the "00:00" depending if it is init or end to calculate prices
-    let init = day.initHour ==  "00:00"? new Date("01/01/2021 " + day.initHour).getHours() -0.1 : new Date("01/01/2021 " + day.initHour).getHours()
-    let end = day.endHour == "00:00"? new Date("01/01/2021 " +  "23:59" ).getHours() + 1 : new Date("01/01/2021 " +  day.endHour  ).getHours()
-    let feeInit = fee.initHour == "00:00"? new Date("01/01/2021 " +  fee.initHour).getHours() - 0.1 :  new Date("01/01/2021 " +  fee.initHour).getHours()
-    let feeEnd = fee.endHour == "00:00"? new Date("01/01/2021 " +  "23:59").getHours() + 1 : new Date("01/01/2021 " +  fee.endHour  ).getHours()
+    const init = day.initHour ==  "00:00"? new Date("01/01/2021 " + day.initHour).getHours() -0.1 : new Date("01/01/2021 " + day.initHour).getHours()
+    const end = day.endHour == "00:00"? new Date("01/01/2021 " +  "23:59" ).getHours() + 1 : new Date("01/01/2021 " +  day.endHour  ).getHours()
+    const feeInit = fee.initHour == "00:00"? new Date("01/01/2021 " +  fee.initHour).getHours() - 0.1 :  new Date("01/01/2021 " +  fee.initHour).getHours()
+    const feeEnd = fee.endHour == "00:00"? new Date("01/01/2021 " +  "23:59").getHours() + 1 : new Date("01/01/2021 " +  fee.endHour  ).getHours()
     
 
     //Case 0: It is not on the Interval
@@ -41,18 +41,18 @@ const getHoursWorked = (fee: {initHour: string, endHour: string, price: number},
 }
 
 const getDayPayment = (day: dayWorked) : number => {
-    let tablePrices = isWeekend(day.dayName) ? Weekend: Weekday 
-    let dayPay: number = 0
+    const tablePrices = isWeekend(day.dayName) ? Weekend: Weekday 
+    let dayPay = 0
     tablePrices.fees.forEach((fee)=>{
-        let hoursWorked: number = getHoursWorked(fee, day)
+        const hoursWorked: number = getHoursWorked(fee, day)
         dayPay += hoursWorked * fee.price
     })
     return dayPay
 }
 
 export const getTotalPayment = (workerInfo: WorkerWeekResume ): string => {
-    let daysInfo = workerInfo.daysWorked
-    let totalPay: number = 0
+    const daysInfo = workerInfo.daysWorked
+    let totalPay = 0
     daysInfo.forEach((day: dayWorked)=>{
         totalPay +=  getDayPayment(day)
     })
